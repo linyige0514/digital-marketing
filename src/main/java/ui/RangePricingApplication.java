@@ -8,6 +8,9 @@ package ui;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
+
+import com.github.javafaker.Faker;
 
 import model.Business.Business;
 import model.Business.ConfigureABusiness;
@@ -35,33 +38,85 @@ public class RangePricingApplication {
 
     Business business = ConfigureABusiness.createABusinessAndLoadALotOfData("Xerox", 50, 10, 30, 100, 10);
 
+    SupplierDirectory sd = business.getSupplierDirectory();
+    
+
+    MasterOrderList mol = business.getMasterOrderList();
+    MasterOrderReport orderReport = mol.generateMasterOrderReport();
+
+
+
    // 2. Maybe some interaction with the user (optional)
+
+    Scanner sc = new Scanner(System.in);
+
+    boolean exitCode = false;
+
+    while (!exitCode) {
+      System.out.println("Welcome to Sunday Lab demo app. Please pick an option:");
+      System.out.println("1. Print Product Performance Report");
+      System.out.println("2. Print Master Order Report");
+      System.out.println("3. Exit");
+      
+      String input = sc.next();
+
+      // System.out.println(input);
+      
+      if (input.equals("1")) {
+        Supplier randomSupplier = sd.pickRandomSupplier();
+        ProductCatalog pd = randomSupplier.getProductCatalog();
+        ProductsReport myFirstReport = pd.generatProductPerformanceReport();
+        myFirstReport.printProductReport();
+
+      }
+
+      if (input.equals("2"))
+        orderReport.printOrderReport();
+      
+      if (input.equals("3")) exitCode = true;
+    }
+    
+    System.out.println("Thank you, have a nice day.");
+
+
 
     
    // 3. Show some analytics (Summerizing, comparing, sorting, grouping data by some criteria)
 
 
-    //business.printShortInfo();
+   // business.printShortInfo();
 
-    SupplierDirectory sd = business.getSupplierDirectory();
-    Supplier randomSupplier = sd.pickRandomSupplier();
-    ProductCatalog pd = randomSupplier.getProductCatalog();
 
+
+    // Faker magicBox = new Faker();
+
+    // System.out.println("================== First, Last name ================== ");
+    // for (int index=0; index < 50; index++){
+    //   String fullName = magicBox.name().fullName();
+    //   System.out.println(fullName);
+    // }
+
+    // System.out.println("================== Companies ================== ");
     
-    ProductsReport myFirstReport = pd.generatProductPerformanceReport();
-    // myFirstReport.printProductReport();
+    // for (int index=0; index < 50; index++){
+    //   String companyName = magicBox.company().name();
+    //   System.out.println(companyName);
+    // }
 
-    MasterOrderList mol = business.getMasterOrderList();
-    MasterOrderReport orderReport = mol.generateMasterOrderReport();
-    orderReport.printOrderReport();
+    // System.out.println("================== Products ================== ");
+    
+    // for (int index=0; index < 50; index++){
+    //   String product = magicBox.commerce().productName();
+    //   System.out.println(product);
+    // }
 
 
-
-
-
-
-
-
+    // System.out.println("================== Yoda Quotes ================== ");
+    
+    // for (int index=0; index < 50; index++){
+    //   String quote = magicBox.yoda().quote();
+    //   System.out.println(quote);
+    // }
 
 
 

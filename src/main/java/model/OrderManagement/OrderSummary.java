@@ -32,7 +32,7 @@ public int getOrderProfit(){
 }
 
 public void printOrderSummary(){
-    System.out.println("| Customer #" + customerId + " | " + numberOfItems + " | " + salesvolume);
+    System.out.println("| " + customerId + " | " + numberOfItems + " | " + salesvolume);
 }
 
 }

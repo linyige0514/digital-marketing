@@ -7,6 +7,8 @@ package model.Business;
 
 import java.util.Random;
 
+import com.github.javafaker.Faker;
+
 import model.Business.Business;
 import model.CustomerManagement.CustomerDirectory;
 import model.CustomerManagement.CustomerProfile;
@@ -59,9 +61,11 @@ public class ConfigureABusiness {
   }
 
   public static void loadSuppliers(Business b, int supplierCount) {
+    Faker faker = new Faker();
+
     SupplierDirectory supplierDirectory = b.getSupplierDirectory();
     for (int index = 1; index <= supplierCount; index++) {
-      supplierDirectory.newSupplier("Supplier #" + index);
+      supplierDirectory.newSupplier(faker.company().name());
     }
   }
 
@@ -99,8 +103,10 @@ public class ConfigureABusiness {
     CustomerDirectory customerDirectory = b.getCustomerDirectory();
     PersonDirectory personDirectory = b.getPersonDirectory();
 
+    Faker faker = new Faker();
+
     for (int index = 1; index <= customerCount; index++) {
-      Person newPerson = personDirectory.newPerson("" + index);
+      Person newPerson = personDirectory.newPerson(faker.name().fullName());
       customerDirectory.newCustomerProfile(newPerson);
     }
   }
