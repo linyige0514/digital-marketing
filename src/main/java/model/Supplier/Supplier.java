@@ -27,7 +27,7 @@ public class Supplier {
     
     public ProductsReport prepareProductsReport(){
         
-        productsreport = productcatalog.generatProductPerformanceReport();
+        productsreport = productcatalog.generatProductPerformanceReport("");
         return productsreport;
     }
     

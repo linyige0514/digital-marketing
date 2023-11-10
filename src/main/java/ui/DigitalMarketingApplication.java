@@ -65,7 +65,7 @@ public class DigitalMarketingApplication {
       if (input.equals("1")) {
         Supplier randomSupplier = sd.pickRandomSupplier();
         ProductCatalog pd = randomSupplier.getProductCatalog();
-        ProductsReport myFirstReport = pd.generatProductPerformanceReport();
+        ProductsReport myFirstReport = pd.generatProductPerformanceReport("Name");
         myFirstReport.printProductReport();
 
       }

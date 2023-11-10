@@ -13,6 +13,8 @@ package model.ProductManagement;
 //this class will extract summary data from the product
 public class ProductSummary {
     Product subjectproduct;
+
+
     int numberofsalesabovetarget;
     int numberofsalesbelowtarget;
     int productpriceperformance; //total profit above target --could be negative too
@@ -27,6 +29,10 @@ public class ProductSummary {
         acutalsalesvolume = p.getSalesVolume();
         numberofsalesbelowtarget = p.getNumberOfProductSalesBelowTarget();
     
+    }
+
+    public Product getSubjectproduct() {
+        return subjectproduct;
     }
     
     public int getSalesRevenues(){

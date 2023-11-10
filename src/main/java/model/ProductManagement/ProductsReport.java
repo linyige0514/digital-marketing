@@ -15,16 +15,21 @@ import java.util.Collections;
 public class ProductsReport {
 
     ArrayList<ProductSummary> productsummarylist;
+    String sortingRule;
 
-    public ProductsReport() {
+    public ProductsReport(String sortingRule) {
         productsummarylist = new ArrayList<ProductSummary>();
+        this.sortingRule = sortingRule;
+        /// We could make it "prepopulate" with the existing product data
+
+
     }
 
     public void addProductSummary(ProductSummary ps) {
 
         productsummarylist.add(ps);
 
-        ProductSummaryComparator comparator = new ProductSummaryComparator();
+        ProductSummaryComparator comparator = new ProductSummaryComparator(sortingRule);
         Collections.sort(productsummarylist,comparator);
 
     }

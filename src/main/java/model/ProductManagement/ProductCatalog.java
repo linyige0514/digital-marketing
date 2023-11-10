@@ -39,8 +39,8 @@ public class ProductCatalog {
         return p;
     }
 
-    public ProductsReport generatProductPerformanceReport() {
-        ProductsReport productsreport = new ProductsReport();
+    public ProductsReport generatProductPerformanceReport(String sortingRule) {
+        ProductsReport productsreport = new ProductsReport(sortingRule);
 
         for (Product p : products) {
 
