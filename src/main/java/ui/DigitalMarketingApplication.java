@@ -25,7 +25,7 @@ import model.Supplier.SupplierDirectory;
  *
  * @author kal bugrara
  */
-public class RangePricingApplication {
+public class DigitalMarketingApplication {
 
   /**
    * @param args the command line arguments

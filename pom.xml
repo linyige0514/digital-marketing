@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>info5001</groupId>
-  <artifactId>pricing-model-bundle</artifactId>
+  <artifactId>digital-marketing</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>pricing-model-bundle</name>
+  <name>digital-marketing</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
