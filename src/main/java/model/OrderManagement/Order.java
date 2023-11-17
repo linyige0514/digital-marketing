@@ -18,37 +18,41 @@ import model.SalesManagement.SalesPersonProfile;
  */
 public class Order {
 
-    ArrayList<OrderItem> orderitems;
+    ArrayList<OrderItem> orderItems;
     CustomerProfile customer;
     SalesPersonProfile salesperson;
     MarketChannelAssignment mca;
     String status;
 
-    public Order(){}
-    
+    public Order() {
+    }
+
     public Order(CustomerProfile cp) {
-        orderitems = new ArrayList();
+        orderItems = new ArrayList<OrderItem>();
         customer = cp;
-        customer.addCustomerOrder(this); //we link the order to the customer
+        customer.addCustomerOrder(this); // we link the order to the customer
         salesperson = null;
         status = "in process";
     }
+
     public Order(CustomerProfile cp, SalesPersonProfile ep) {
-        orderitems = new ArrayList();
+        orderItems = new ArrayList<OrderItem>();
         customer = cp;
         salesperson = ep;
-        customer.addCustomerOrder(this); //we link the order to the customer
-        salesperson.addSalesOrder(this);  
+        customer.addCustomerOrder(this); // we link the order to the customer
+        salesperson.addSalesOrder(this);
     }
-    public OrderItem newOrderItem(Product p, int actualprice, int q) {
-        OrderItem oi = new OrderItem(p, actualprice, q);
-        orderitems.add(oi);
+
+    public OrderItem newOrderItem(Product p, int actualPrice, int q) {
+        OrderItem oi = new OrderItem(p, actualPrice, q);
+        orderItems.add(oi);
         return oi;
     }
-    //order total is the sumer of the order item totals
+
+    // order total is the sumer of the order item totals
     public int getOrderTotal() {
         int sum = 0;
-        for (OrderItem oi : orderitems) {
+        for (OrderItem oi : orderItems) {
             sum = sum + oi.getOrderItemTotal();
         }
         return sum;
@@ -56,44 +60,49 @@ public class Order {
 
     public int getOrderPricePerformance() {
         int sum = 0;
-        for (OrderItem oi : orderitems) {
-            sum = sum + oi.calculatePricePerformance();     //positive and negative values       
+        for (OrderItem oi : orderItems) {
+            sum = sum + oi.calculatePricePerformance(); // positive and negative values
         }
         return sum;
     }
 
     public int getNumberOfOrderItemsAboveTarget() {
         int sum = 0;
-        for (OrderItem oi : orderitems) {
+        for (OrderItem oi : orderItems) {
             if (oi.isActualAboveTarget() == true) {
                 sum = sum + 1;
             }
         }
         return sum;
     }
-    
-    //sum all the item targets and compare to the total of the order 
-    public boolean isOrderAboveTotalTarget(){
+
+    // sum all the item targets and compare to the total of the order
+    public boolean isOrderAboveTotalTarget() {
         int sum = 0;
-        for (OrderItem oi: orderitems){
-            sum = sum + oi.getOrderItemTargetTotal(); //product targets are added
+        for (OrderItem oi : orderItems) {
+            sum = sum + oi.getOrderItemTargetTotal(); // product targets are added
         }
-        if(getOrderTotal()>sum) {return true;}
-        else {return false;}
-        
+        if (getOrderTotal() > sum) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
-public void CancelOrder(){
-    status = "Cancelled";
-}
-public void Submit(){
-    status = "Submitted";
-}
 
-   public int getNumberOfItems(){
-    return orderitems.size();
-   }
+    public void CancelOrder() {
+        status = "Cancelled";
+    }
 
-   public String getCustomerId(){
-    return customer.getCustomerId();
-   }
+    public void Submit() {
+        status = "Submitted";
+    }
+
+    public int getNumberOfItems() {
+        return orderItems.size();
+    }
+
+    public String getCustomerId() {
+        return customer.getCustomerId();
+    }
 }

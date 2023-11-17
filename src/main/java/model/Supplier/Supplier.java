@@ -17,49 +17,46 @@ import model.ProductManagement.ProductsReport;
  */
 public class Supplier {
     String name;
-    ProductCatalog productcatalog;
-    ProductsReport productsreport;
-    public Supplier(String n){
+    ProductCatalog productCatalog;
+    ProductsReport productsReport;
+
+    public Supplier(String n) {
         name = n;
-        productcatalog = new ProductCatalog("software");
-        
+        productCatalog = new ProductCatalog("software");
     }
-    
-    public ProductsReport prepareProductsReport(){
-        
-        productsreport = productcatalog.generatProductPerformanceReport("");
-        return productsreport;
+
+    public ProductsReport prepareProductsReport() {
+
+        productsReport = productCatalog.generateProductPerformanceReport("");
+        return productsReport;
     }
-    
-    public ArrayList<ProductSummary> getProductsAlwaysAboveTarget(){
-       
-        if(productsreport==null) productsreport = prepareProductsReport();
-       return productsreport.getProductsAlwaysAboveTarget();
-       
+
+    public ArrayList<ProductSummary> getProductsAlwaysAboveTarget() {
+
+        if (productsReport == null)
+            productsReport = prepareProductsReport();
+        return productsReport.getProductsAlwaysAboveTarget();
+
     }
-    
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-        
-    
-    public ProductCatalog getProductCatalog(){
-        return productcatalog;
+
+    public ProductCatalog getProductCatalog() {
+        return productCatalog;
     }
-    
-    public void printShortInfo(){
+
+    public void printShortInfo() {
         System.out.println("Checking supplier " + name);
-        productcatalog.printShortInfo();
+        productCatalog.printShortInfo();
     }
 
+    // add supplier product ..
 
-
-    //add supplier product ..
-    
-    //update supplier product ...
+    // update supplier product ...
     @Override
-   public String toString(){
-       return name;
-       
-   }
+    public String toString() {
+        return name;
+    }
 }

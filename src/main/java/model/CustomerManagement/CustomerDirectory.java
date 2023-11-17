@@ -23,7 +23,7 @@ public class CustomerDirectory {
     public CustomerDirectory(Business d) {
 
         business = d;
-        customerlist = new ArrayList();
+        customerlist = new ArrayList<CustomerProfile>();
 
     }
 

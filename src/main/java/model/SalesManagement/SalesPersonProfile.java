@@ -16,21 +16,22 @@ import model.Personnel.Profile;
  * @author kal bugrara
  */
 public class SalesPersonProfile extends Profile {
-    ArrayList<Order> salesorders;
-
+    ArrayList<Order> salesOrders;
 
     public SalesPersonProfile(Person p) {
 
-        super(p); 
-        salesorders = new ArrayList();
+        super(p);
+        salesOrders = new ArrayList<Order>();
 
     }
-    public void addSalesOrder(Order o){
-        salesorders.add(o);
+
+    public void addSalesOrder(Order o) {
+        salesOrders.add(o);
     }
+
     @Override
-    public String getRole(){
-        return  "Sales";
+    public String getRole() {
+        return "Sales";
     }
 
 }

@@ -14,63 +14,59 @@ import java.util.Collections;
  */
 public class ProductsReport {
 
-    ArrayList<ProductSummary> productsummarylist;
+    ArrayList<ProductSummary> productSummaryList;
     String sortingRule;
 
     public ProductsReport(String sortingRule) {
-        productsummarylist = new ArrayList<ProductSummary>();
+        productSummaryList = new ArrayList<ProductSummary>();
         this.sortingRule = sortingRule;
-        /// We could make it "prepopulate" with the existing product data
-
+        /// We could make it "pre-populate" with the existing product data
 
     }
 
     public void addProductSummary(ProductSummary ps) {
 
-        productsummarylist.add(ps);
+        productSummaryList.add(ps);
 
         ProductSummaryComparator comparator = new ProductSummaryComparator(sortingRule);
-        Collections.sort(productsummarylist,comparator);
+        Collections.sort(productSummaryList, comparator);
 
     }
 
     public ProductSummary getTopProductAboveTarget() {
-        ProductSummary currenttopproduct = null;
+        ProductSummary currentTopProduct = null;
 
-        for (ProductSummary ps : productsummarylist) {
-            if (currenttopproduct == null) {
-                currenttopproduct = ps; // initial step 
-            } else if (ps.getNumberAboveTarget() > currenttopproduct.getNumberAboveTarget()) {
-                currenttopproduct = ps; //we have a new higher total
+        for (ProductSummary ps : productSummaryList) {
+            if (currentTopProduct == null) {
+                currentTopProduct = ps; // initial step
+            } else if (ps.getNumberAboveTarget() > currentTopProduct.getNumberAboveTarget()) {
+                currentTopProduct = ps; // we have a new higher total
             }
 
         }
-        return currenttopproduct;
+        return currentTopProduct;
     }
 
     public ArrayList<ProductSummary> getProductsAlwaysAboveTarget() {
-        ArrayList<ProductSummary> productsalwaysabovetarget = new ArrayList(); //temp array list
+        ArrayList<ProductSummary> productsAlwaysAboveTarget = new ArrayList<ProductSummary>(); // temp array list
 
-        for (ProductSummary ps : productsummarylist) {
+        for (ProductSummary ps : productSummaryList) {
             if (ps.isProductAlwaysAboveTarget() == true) {
-                productsalwaysabovetarget.add(ps);
+                productsAlwaysAboveTarget.add(ps);
             }
         }
 
-        return productsalwaysabovetarget;
+        return productsAlwaysAboveTarget;
     }
-    
 
-    public void printProductReport(){
-        System.out.println("Product Performace Report");
+    public void printProductReport() {
+        System.out.println("Product Performance Report");
         System.out.println("Below are product name, actual sales and number of sales above target.");
-        for (ProductSummary ps: productsummarylist){
-            int index = productsummarylist.indexOf(ps);
-            System.out.print((index+1) + " ");
+        for (ProductSummary ps : productSummaryList) {
+            int index = productSummaryList.indexOf(ps);
+            System.out.print((index + 1) + " ");
             ps.printProductSummary();
         }
 
-        
-        
     }
 }

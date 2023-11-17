@@ -14,40 +14,41 @@ import model.Personnel.*;
  * @author kal bugrara
  */
 public class UserAccountDirectory {
-    
-      ArrayList<UserAccount> useraccountlist ;
-    
-      public UserAccountDirectory (){
-          
-       useraccountlist = new ArrayList();
+
+    ArrayList<UserAccount> userAccountList;
+
+    public UserAccountDirectory() {
+
+        userAccountList = new ArrayList<UserAccount>();
 
     }
 
     public UserAccount newUserAccount(Profile p, String un, String pw) {
 
-        UserAccount ua = new UserAccount (p,  un,  pw);
-        useraccountlist.add(ua);
+        UserAccount ua = new UserAccount(p, un, pw);
+        userAccountList.add(ua);
         return ua;
     }
 
     public UserAccount findUserAccount(String id) {
 
-        for (UserAccount ua : useraccountlist) {
+        for (UserAccount ua : userAccountList) {
 
             if (ua.isMatch(id)) {
                 return ua;
             }
         }
-            return null; //not found after going through the whole list
-         }
-     public UserAccount AuthenticateUser(String un, String pw) {
+        return null; // not found after going through the whole list
+    }
 
-        for (UserAccount ua : useraccountlist) {
+    public UserAccount AuthenticateUser(String un, String pw) {
+
+        for (UserAccount ua : userAccountList) {
 
             if (ua.IsValidUser(un, pw)) {
                 return ua;
             }
         }
-            return null; //not found after going through the whole list
-         }   
+        return null; // not found after going through the whole list
+    }
 }

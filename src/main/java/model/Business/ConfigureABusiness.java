@@ -9,26 +9,16 @@ import java.util.Random;
 
 import com.github.javafaker.Faker;
 
-import model.Business.Business;
 import model.CustomerManagement.CustomerDirectory;
 import model.CustomerManagement.CustomerProfile;
-import model.MarketingManagement.MarketingPersonDirectory;
-import model.MarketingManagement.MarketingPersonProfile;
 import model.OrderManagement.MasterOrderList;
 import model.OrderManagement.Order;
-import model.OrderManagement.OrderItem;
-import model.Personnel.EmployeeDirectory;
-import model.Personnel.EmployeeProfile;
 import model.Personnel.Person;
 import model.Personnel.PersonDirectory;
 import model.ProductManagement.Product;
 import model.ProductManagement.ProductCatalog;
-import model.SalesManagement.SalesPersonDirectory;
-import model.SalesManagement.SalesPersonProfile;
 import model.Supplier.Supplier;
 import model.Supplier.SupplierDirectory;
-import model.UserAccountManagement.UserAccount;
-import model.UserAccountManagement.UserAccountDirectory;
 
 /**
  *
@@ -72,7 +62,7 @@ public class ConfigureABusiness {
   static void loadProducts(Business b, int productCount) {
     SupplierDirectory supplierDirectory = b.getSupplierDirectory();
 
-    for (Supplier supplier : supplierDirectory.getSuplierList()) {
+    for (Supplier supplier : supplierDirectory.getSupplierList()) {
 
       int randomProductNumber = getRandom(1, productCount);
       ProductCatalog productCatalog = supplier.getProductCatalog();
@@ -154,7 +144,7 @@ public class ConfigureABusiness {
         int randomPrice = getRandom(randomProduct.getFloorPrice(), randomProduct.getCeilingPrice());
         int randomQuantity = getRandom(1, productMaxQuantity);
 
-        OrderItem oi = randomOrder.newOrderItem(randomProduct, randomPrice, randomQuantity);
+        randomOrder.newOrderItem(randomProduct, randomPrice, randomQuantity);
       }
     }
     // Make sure order items are connected to the order

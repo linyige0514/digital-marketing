@@ -9,51 +9,47 @@ import java.util.Collections;
  * @author kal bugrara
  */
 public class MasterOrderReport {
-    ArrayList<OrderSummary> ordersummarylist;
-    
-    public MasterOrderReport(){
-        
-        ordersummarylist = new ArrayList();
-        
-        
+    ArrayList<OrderSummary> orderSummaryList;
+
+    public MasterOrderReport() {
+
+        orderSummaryList = new ArrayList<OrderSummary>();
+
     }
-    public void generateOrderReport(ArrayList<Order> orders){
-        ArrayList<Order> orderlist = orders;
-        OrderSummary ordersummary ;
-        
+
+    public void generateOrderReport(ArrayList<Order> orders) {
+        ArrayList<Order> orderList = orders;
+        OrderSummary orderSummary;
+
         OrderSummaryComparator comparator = new OrderSummaryComparator();
-        
-        for(Order order: orderlist){
-            ordersummary = new OrderSummary(order);
-            ordersummarylist.add(ordersummary);
+
+        for (Order order : orderList) {
+            orderSummary = new OrderSummary(order);
+            orderSummaryList.add(orderSummary);
         }
-        Collections.sort(ordersummarylist, comparator);
+        Collections.sort(orderSummaryList, comparator);
     }
-    
-    public OrderSummary getTopProfitableOrder(){ //most profitable order
-        OrderSummary currenttoporder = null;
-        
-        for (OrderSummary os: ordersummarylist){
-            if(currenttoporder == null)currenttoporder= os; // initial step 
-            else 
-                if(os.getOrderProfit()> currenttoporder.getOrderProfit()){
-                currenttoporder = os; //we have a new higher total
+
+    public OrderSummary getTopProfitableOrder() { // most profitable order
+        OrderSummary currentTopOrder = null;
+
+        for (OrderSummary os : orderSummaryList) {
+            if (currentTopOrder == null)
+                currentTopOrder = os; // initial step
+            else if (os.getOrderProfit() > currentTopOrder.getOrderProfit()) {
+                currentTopOrder = os; // we have a new higher total
             }
-                }
-        return currenttoporder;
+        }
+        return currentTopOrder;
     }
 
-
-    public void printOrderReport(){
+    public void printOrderReport() {
         System.out.println("Master Order Report");
-        for (OrderSummary os: ordersummarylist){
-            int index = ordersummarylist.indexOf(os);
-            System.out.print((index+1) + " ");
+        for (OrderSummary os : orderSummaryList) {
+            int index = orderSummaryList.indexOf(os);
+            System.out.print((index + 1) + " ");
             os.printOrderSummary();
         }
 
-        
-        
     }
 }
-

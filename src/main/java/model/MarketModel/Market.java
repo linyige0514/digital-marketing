@@ -19,8 +19,9 @@ public class Market {
     ArrayList<String> characteristics;
     ArrayList<Market> submarkets;
     int size;
-public Market(String s){
-    characteristics = new ArrayList();
-    characteristics.add(s);
-}
+
+    public Market(String s) {
+        characteristics = new ArrayList<String>();
+        characteristics.add(s);
+    }
 }

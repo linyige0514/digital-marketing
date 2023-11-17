@@ -16,31 +16,31 @@ import model.Business.Business;
 public class EmployeeDirectory {
 
     Business business;
-    ArrayList<EmployeeProfile> employeelist;
+    ArrayList<EmployeeProfile> employeeList;
 
     public EmployeeDirectory(Business d) {
 
         business = d;
-        employeelist = new ArrayList();
+        employeeList = new ArrayList<EmployeeProfile>();
 
     }
 
     public EmployeeProfile newEmployeeProfile(Person p) {
 
         EmployeeProfile sp = new EmployeeProfile(p);
-        employeelist.add(sp);
+        employeeList.add(sp);
         return sp;
     }
 
     public EmployeeProfile findEmployee(String id) {
 
-        for (EmployeeProfile sp : employeelist) {
+        for (EmployeeProfile sp : employeeList) {
 
             if (sp.isMatch(id)) {
                 return sp;
             }
         }
-            return null; //not found after going through the whole list
-         }
-    
+        return null; // not found after going through the whole list
+    }
+
 }

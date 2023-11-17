@@ -13,11 +13,12 @@ import java.util.ArrayList;
  */
 public class CustomersReport {
     ArrayList<CustomerSummary> customerlist;
-    
-    public CustomersReport(){
-        
+
+    public CustomersReport() {
+
     }
-    public void addCustomerSummary(CustomerSummary cs){
-        
+
+    public void addCustomerSummary(CustomerSummary cs) {
+
     }
 }

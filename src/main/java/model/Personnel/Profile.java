@@ -5,27 +5,25 @@
  */
 package model.Personnel;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author kal bugrara
  */
 public abstract class Profile {
     Person person;
-     public Profile(Person p){
+
+    public Profile(Person p) {
         person = p;
-        
+
     }
-    
-     public abstract String getRole();
-    
-    public Person getPerson(){
+
+    public abstract String getRole();
+
+    public Person getPerson() {
         return person;
     }
-     
 
-        public boolean isMatch(String id) {
+    public boolean isMatch(String id) {
         if (person.getPersonId().equals(id)) {
             return true;
         }

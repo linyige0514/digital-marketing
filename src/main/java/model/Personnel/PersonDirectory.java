@@ -12,31 +12,31 @@ import java.util.ArrayList;
  * @author kal bugrara
  */
 public class PersonDirectory {
-    
-      ArrayList<Person> personlist ;
-    
-      public PersonDirectory (){
-          
-       personlist = new ArrayList();
+
+    ArrayList<Person> personList;
+
+    public PersonDirectory() {
+
+        personList = new ArrayList<Person>();
 
     }
 
     public Person newPerson(String id) {
 
         Person p = new Person(id);
-        personlist.add(p);
+        personList.add(p);
         return p;
     }
 
     public Person findPerson(String id) {
 
-        for (Person p : personlist) {
+        for (Person p : personList) {
 
             if (p.isMatch(id)) {
                 return p;
             }
         }
-            return null; //not found after going through the whole list
-         }
-    
+        return null; // not found after going through the whole list
+    }
+
 }
