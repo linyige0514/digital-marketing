@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.CustomerManagement;
+package model.MarketModel;
 
 /**
  *
  * @author kal bugrara
  */
-public class MarketCatalog {
-    
-//    ArrayList<Market> markets;
-    
+public class ChannelCatalog {
+
 }
