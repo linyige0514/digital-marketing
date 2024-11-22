@@ -16,14 +16,17 @@ import model.Personnel.Person;
  * @author kal bugrara
  */
 public class CustomerProfile {
+
+    CustomerDirectory customerDirectory;
     ArrayList<Order> orders;
     ArrayList<Market> markets;
 
     Person person;
 
-    public CustomerProfile(Person p) {
+    public CustomerProfile(Person p, CustomerDirectory cd) {
         person = p;
         orders = new ArrayList<Order>();
+        customerDirectory = cd;
     }
 
     public int getTotalPricePerformance() {

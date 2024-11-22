@@ -7,9 +7,9 @@ package model.Business;
 
 import java.util.ArrayList;
 
-import model.CustomerManagement.ChannelCatalog;
 import model.CustomerManagement.CustomerDirectory;
-import model.CustomerManagement.MarketCatalog;
+import model.MarketModel.ChannelCatalog;
+import model.MarketModel.MarketCatalog;
 import model.MarketingManagement.MarketingPersonDirectory;
 import model.OrderManagement.MasterOrderList;
 import model.Personnel.EmployeeDirectory;
@@ -44,8 +44,8 @@ public class Business {
     public Business(String n) {
         name = n;
         masterorderlist = new MasterOrderList();
-        suppliers = new SupplierDirectory();
-//        solutionoffercatalog = new SolutionOfferCatalog();
+        suppliers = new SupplierDirectory(this);
+        // solutionoffercatalog = new SolutionOfferCatalog();
         persondirectory = new PersonDirectory();
         customerdirectory = new CustomerDirectory(this);
         salespersondirectory = new SalesPersonDirectory(this);
@@ -67,6 +67,7 @@ public class Business {
     public UserAccountDirectory getUserAccountDirectory() {
         return useraccountdirectory;
     }
+
     public MarketingPersonDirectory getMarketingPersonDirectory() {
         return marketingpersondirectory;
     }
@@ -93,7 +94,7 @@ public class Business {
 
     public int getHowManySupplierProductsAlwaysAboveTarget(String n) {
         ProductsReport productsreport = getSupplierPerformanceReport(n); // see above
-        int i = productsreport.getProductsAlwaysAboveTarget().size(); //return size of the arraylist
+        int i = productsreport.getProductsAlwaysAboveTarget().size(); // return size of the arraylist
         return i;
     }
 
@@ -108,11 +109,12 @@ public class Business {
     public MasterOrderList getMasterOrderList() {
         return masterorderlist;
     }
-        public EmployeeDirectory getEmployeeDirectory() {
+
+    public EmployeeDirectory getEmployeeDirectory() {
         return employeedirectory;
     }
 
-    public void printShortInfo(){
+    public void printShortInfo() {
         System.out.println("Checking what's inside the business hierarchy.");
         suppliers.printShortInfo();
         customerdirectory.printShortInfo();

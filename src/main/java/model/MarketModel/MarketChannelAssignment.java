@@ -10,15 +10,15 @@ package model.MarketModel;
  * @author kal bugrara
  */
 public class MarketChannelAssignment {
-    
-    Market market;
-    Channel channel;
-    
-    public MarketChannelAssignment(Market m, Channel c){
-        
-        market = m;
-        channel = c;
-        
-    }
-    
+
+  Market market;
+  Channel channel;
+
+  public MarketChannelAssignment(Market m, Channel c) {
+
+    market = m;
+    channel = c;
+
+  }
+
 }

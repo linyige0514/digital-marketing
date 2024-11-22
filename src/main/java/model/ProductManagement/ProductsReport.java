@@ -15,22 +15,19 @@ import java.util.Collections;
 public class ProductsReport {
 
     ArrayList<ProductSummary> productSummaryList;
-    String sortingRule;
+
+    ProductSummaryComparator comparator;
 
     public ProductsReport(String sortingRule) {
         productSummaryList = new ArrayList<ProductSummary>();
-        this.sortingRule = sortingRule;
+        comparator = new ProductSummaryComparator(sortingRule);
         /// We could make it "pre-populate" with the existing product data
 
     }
 
     public void addProductSummary(ProductSummary ps) {
-
         productSummaryList.add(ps);
-
-        ProductSummaryComparator comparator = new ProductSummaryComparator(sortingRule);
         Collections.sort(productSummaryList, comparator);
-
     }
 
     public ProductSummary getTopProductAboveTarget() {

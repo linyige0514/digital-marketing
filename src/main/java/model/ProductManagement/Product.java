@@ -64,6 +64,11 @@ public class Product {
     public int getNumberOfProductSalesBelowTarget() {
         int sum = 0;
         for (OrderItem oi : orderItems) {
+            
+
+
+
+
             if (oi.isActualBelowTarget() == true)
                 sum = sum + 1;
         }
@@ -98,6 +103,20 @@ public class Product {
             sum = sum + oi.getOrderItemTotal(); // positive and negative values
         }
         return sum;
+    }
+
+    public int getTotalQuantity() {
+        int totalQuantity = 0;
+        for (OrderItem oi : orderItems) {
+            totalQuantity = totalQuantity + oi.getQuantity();
+        }
+        return totalQuantity;
+    }
+
+    public float getAveragePrice() {
+        if (getTotalQuantity() == 0)
+            return 0;
+        return (float) getSalesVolume() / getTotalQuantity();
     }
 
     public void setName(String n) {

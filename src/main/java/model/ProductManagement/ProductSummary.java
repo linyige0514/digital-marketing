@@ -10,49 +10,60 @@ package model.ProductManagement;
  * @author kal bugrara
  */
 
-//this class will extract summary data from the product
+// this class will extract summary data from the product
 public class ProductSummary {
-    Product subjectproduct;
+    int rank; // will be done later
+    Product subjectProduct;
 
+    int salesVolume;
 
+    float averagePrice;
+
+    int salesQuantity;
     int numberofsalesabovetarget;
     int numberofsalesbelowtarget;
-    int productpriceperformance; //total profit above target --could be negative too
-    int acutalsalesvolume;
-    int rank; // will be done later
-    
-    public ProductSummary(Product p){
-        
+    int productpriceperformance; // total profit above target --could be negative
+
+    public ProductSummary(Product p) {
+
         numberofsalesabovetarget = p.getNumberOfProductSalesAboveTarget();
         productpriceperformance = p.getOrderPricePerformance();
-        subjectproduct = p; //keeps track of the product itself not as well;
-        acutalsalesvolume = p.getSalesVolume();
         numberofsalesbelowtarget = p.getNumberOfProductSalesBelowTarget();
-    
+
+        rank = 0;
+        subjectProduct = p;
+        salesVolume = p.getSalesVolume();
+        averagePrice = p.getAveragePrice();
+        salesQuantity = p.getTotalQuantity();
     }
 
-    public Product getSubjectproduct() {
-        return subjectproduct;
-    }
-    
-    public int getSalesRevenues(){
-        return acutalsalesvolume;
-    }
-    public int getNumberAboveTarget(){
-        return numberofsalesabovetarget;
-    }
-    public int getProductPricePerformance(){
-        return productpriceperformance;
-    }
-    public int getNumberBelowTarget(){
-        return numberofsalesbelowtarget;
-    }            
-    public boolean isProductAlwaysAboveTarget(){
+    public boolean isProductAlwaysAboveTarget() {
         return false; // to be implemented
     }
 
-    public void printProductSummary(){
-        System.out.println(subjectproduct.getName() + " | " + acutalsalesvolume + " | " + numberofsalesabovetarget + " | " + productpriceperformance);
+    public int getNumberAboveTarget() {
+        return numberofsalesabovetarget;
+    }
+
+    public int getNumberBelowTarget() {
+        return numberofsalesbelowtarget;
+    }
+
+    public Product getSubjectProduct() {
+        return subjectProduct;
+    }
+
+    public int getSalesVolume() {
+        return salesVolume;
+    }
+
+    public float getAveragePrice() {
+        return averagePrice;
+    }
+
+    public void printProductSummary() {
+        // System.out.println(subjectproduct.getName() + " | " + acutalsalesvolume + " |
+        // " + numberofsalesabovetarget + " | " + productpriceperformance);
     }
 
 }

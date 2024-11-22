@@ -44,7 +44,6 @@ public class ProductCatalog {
         ProductsReport productsReport = new ProductsReport(sortingRule);
 
         for (Product p : products) {
-
             ProductSummary ps = new ProductSummary(p);
             productsReport.addProductSummary(ps);
         }

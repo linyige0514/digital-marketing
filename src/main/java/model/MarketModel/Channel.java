@@ -10,5 +10,5 @@ package model.MarketModel;
  * @author kal bugrara
  */
 public class Channel {
-    
+
 }

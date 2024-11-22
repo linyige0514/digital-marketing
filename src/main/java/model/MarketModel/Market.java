@@ -14,14 +14,14 @@ import model.ProductManagement.SolutionOffer;
  * @author kal bugrara
  */
 public class Market {
-    ArrayList<SolutionOffer> so;
-    ArrayList<MarketChannelAssignment> channels;
-    ArrayList<String> characteristics;
-    ArrayList<Market> submarkets;
-    int size;
+  ArrayList<SolutionOffer> so;
+  ArrayList<MarketChannelAssignment> channels;
+  ArrayList<String> characteristics;
+  ArrayList<Market> submarkets;
+  int size;
 
-    public Market(String s) {
-        characteristics = new ArrayList<String>();
-        characteristics.add(s);
-    }
+  public Market(String s) {
+    characteristics = new ArrayList<String>();
+    characteristics.add(s);
+  }
 }

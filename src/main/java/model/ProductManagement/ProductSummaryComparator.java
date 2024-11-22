@@ -10,14 +10,17 @@ public class ProductSummaryComparator implements Comparator<ProductSummary> {
         this.sortingRule = sortingRule;
     }
 
-
     @Override
     public int compare(ProductSummary o1, ProductSummary o2) {
         if (sortingRule.equals("Name")) {
-            return o1.getSubjectproduct().getName().compareTo(o2.getSubjectproduct().getName());
+            return o1.getSubjectProduct().getName().compareTo(o2.getSubjectProduct().getName());
         }
 
-        return (-1) * Integer.compare(o1.getSalesRevenues(), o2.getSalesRevenues());
+        if (sortingRule.equals("Price")) {
+            return (-1) * Float.compare(o1.getAveragePrice(), o2.getAveragePrice());
+        }
+
+        return (-1) * Integer.compare(o1.getSalesVolume(), o2.getSalesVolume());
     }
-    
+
 }

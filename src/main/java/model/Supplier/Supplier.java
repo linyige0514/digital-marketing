@@ -16,12 +16,14 @@ import model.ProductManagement.ProductsReport;
  * @author kal bugrara
  */
 public class Supplier {
+    SupplierDirectory supplierDirectory;
     String name;
     ProductCatalog productCatalog;
     ProductsReport productsReport;
 
-    public Supplier(String n) {
+    public Supplier(String n, SupplierDirectory sd) {
         name = n;
+        supplierDirectory = sd;
         productCatalog = new ProductCatalog("software");
     }
 
@@ -37,6 +39,10 @@ public class Supplier {
             productsReport = prepareProductsReport();
         return productsReport.getProductsAlwaysAboveTarget();
 
+    }
+
+    public SupplierDirectory getSupplierDirectory() {
+        return supplierDirectory;
     }
 
     public String getName() {

@@ -44,7 +44,7 @@ public class Order {
     }
 
     public OrderItem newOrderItem(Product p, int actualPrice, int q) {
-        OrderItem oi = new OrderItem(p, actualPrice, q);
+        OrderItem oi = new OrderItem(p, actualPrice, q, this);
         orderItems.add(oi);
         return oi;
     }

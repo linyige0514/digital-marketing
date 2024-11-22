@@ -8,19 +8,24 @@ package model.Supplier;
 import java.util.ArrayList;
 import java.util.Random;
 
+import model.Business.Business;
+
 /**
  *
  * @author kal bugrara
  */
 public class SupplierDirectory {
+
+    Business business;
     ArrayList<Supplier> suppliers;
 
-    public SupplierDirectory() {
+    public SupplierDirectory(Business b) {
+        business = b;
         suppliers = new ArrayList<Supplier>();
     }
 
     public Supplier newSupplier(String n) {
-        Supplier supplier = new Supplier(n);
+        Supplier supplier = new Supplier(n, this);
         suppliers.add(supplier);
         return supplier;
 
@@ -38,6 +43,10 @@ public class SupplierDirectory {
 
     public ArrayList<Supplier> getSupplierList() {
         return suppliers;
+    }
+
+    public Business getBusiness() {
+        return business;
     }
 
     public Supplier pickRandomSupplier() {
