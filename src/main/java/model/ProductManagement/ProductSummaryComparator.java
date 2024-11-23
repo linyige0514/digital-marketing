@@ -12,15 +12,15 @@ public class ProductSummaryComparator implements Comparator<ProductSummary> {
 
     @Override
     public int compare(ProductSummary o1, ProductSummary o2) {
-        if (sortingRule.equals("Name")) {
-            return o1.getSubjectProduct().getName().compareTo(o2.getSubjectProduct().getName());
-        }
+        int sortOutcomeByPrice = (-1) * Float.compare(o1.getAveragePrice(), o2.getAveragePrice());
 
-        if (sortingRule.equals("Price")) {
-            return (-1) * Float.compare(o1.getAveragePrice(), o2.getAveragePrice());
-        }
+        if (sortOutcomeByPrice == 0) {
+            return (-1) * Integer.compare(o1.getSalesVolume(), o2.getSalesVolume());
+        } else
+            return sortOutcomeByPrice;
 
-        return (-1) * Integer.compare(o1.getSalesVolume(), o2.getSalesVolume());
+        // Follow natural ordering of Integers but in reverse (thats where -1 comes in)
+
     }
 
 }

@@ -8,6 +8,7 @@ package ui;
 import java.util.ArrayList;
 
 import com.github.javafaker.Faker;
+import com.github.tomaslanger.chalk.Chalk;
 
 import model.Business.Business;
 import model.Business.ConfigureABusiness;
@@ -23,16 +24,21 @@ public class DigitalMarketingApplication {
    */
   public static void main(String[] args) {
 
-    Faker faker = new Faker();
+    Faker magicBox = new Faker();
 
-    ArrayList<String> names = new ArrayList<String>();
+    // String sampleName = magicBox.name().firstName();
 
-    for (int i = 0; i < 10; i++) {
-      names.add("");
+    ArrayList<String> companies = new ArrayList<String>();
+
+    for (int i = 0; i < 100; i++) {
+      String newsCompanyPick = magicBox.company().name();
+      companies.add(newsCompanyPick);
     }
 
-    for (String eachName : names) {
-      System.out.println(eachName);
+    companies.sort((String s1, String s2) -> s1.compareTo(s2));
+
+    for (String company : companies) {
+      System.out.println(Chalk.on(company).red());
     }
 
     // Faker magicBox = new Faker();

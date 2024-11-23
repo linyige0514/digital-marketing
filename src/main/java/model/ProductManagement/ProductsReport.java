@@ -27,7 +27,7 @@ public class ProductsReport {
 
     public void addProductSummary(ProductSummary ps) {
         productSummaryList.add(ps);
-        Collections.sort(productSummaryList, comparator);
+        productSummaryList.sort(comparator);
     }
 
     public ProductSummary getTopProductAboveTarget() {
