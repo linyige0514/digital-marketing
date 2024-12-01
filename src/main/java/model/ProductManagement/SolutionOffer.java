@@ -8,6 +8,7 @@ package model.ProductManagement;
 import java.util.ArrayList;
 
 import model.MarketModel.MarketChannelAssignment;
+import model.OrderManagement.OrderItem;
 
 /**
  *
@@ -15,12 +16,18 @@ import model.MarketModel.MarketChannelAssignment;
  */
 public class SolutionOffer {
     ArrayList<Product> products;
-    int price;// floor, ceiling, and target ideas
+    int targetPrice; // floor, ceiling, and target ideas
+    ArrayList<OrderItem> orderItems;
+
     MarketChannelAssignment marketChannelComb;
 
-    public SolutionOffer(MarketChannelAssignment m) {
+    public SolutionOffer(MarketChannelAssignment m, int price, Product p) {
+        targetPrice = price;
         marketChannelComb = m;
+        m.addSolutionOffer(this);
         products = new ArrayList<Product>();
+        products.add(p);
+        orderItems = new ArrayList<OrderItem>();
     }
 
     public void addProduct(Product p) {
@@ -28,8 +35,30 @@ public class SolutionOffer {
     }
 
     public void setPrice(int p) {
-        price = p;
+        targetPrice = p;
+    }
 
+    public void addOrderItem(OrderItem oi) {
+        orderItems.add(oi);
+    }
+
+    public int getTargetPrice() {
+        return targetPrice;
+    }
+
+    public String getBundleName() {
+        if (products.size() == 0) {
+            return "No products in the bundle";
+        }
+        return products.get(0).getName() + marketChannelComb.getName();
+    }
+
+    public int getSalesVolume() {
+        int total = 0;
+        for (OrderItem oi : orderItems) {
+            total += oi.getOrderItemTotal();
+        }
+        return total;
     }
 
 }

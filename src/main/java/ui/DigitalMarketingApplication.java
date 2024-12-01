@@ -5,10 +5,6 @@
  */
 package ui;
 
-import java.util.ArrayList;
-
-import com.github.javafaker.Faker;
-
 import model.Business.Business;
 import model.Business.ConfigureABusiness;
 
@@ -81,6 +77,8 @@ public class DigitalMarketingApplication {
     Business business = ConfigureABusiness.createABusinessAndLoadALotOfData("Amazon", 50, 10, 30,
         100,
         10);
+
+    business.printShortInfo();
 
   }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import model.CustomerManagement.CustomerProfile;
 import model.MarketModel.MarketChannelAssignment;
-import model.ProductManagement.Product;
+import model.ProductManagement.SolutionOffer;
 import model.SalesManagement.SalesPersonProfile;
 
 /**
@@ -43,8 +43,8 @@ public class Order {
         salesperson.addSalesOrder(this);
     }
 
-    public OrderItem newOrderItem(Product p, int actualPrice, int q) {
-        OrderItem oi = new OrderItem(p, actualPrice, q, this);
+    public OrderItem newOrderItem(SolutionOffer b, int actualPrice, int q) {
+        OrderItem oi = new OrderItem(b, actualPrice, q, this);
         orderItems.add(oi);
         return oi;
     }

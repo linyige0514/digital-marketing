@@ -5,12 +5,14 @@
  */
 package model.MarketModel;
 
+import model.Business.Business;
+
 /**
  *
  * @author kal bugrara
  */
 public class MarketCatalog {
-
+    Business business;
     // ArrayList<Market> markets;
 
 }

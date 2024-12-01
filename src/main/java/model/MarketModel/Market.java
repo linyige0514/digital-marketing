@@ -15,7 +15,7 @@ import model.ProductManagement.SolutionOffer;
  */
 public class Market {
   ArrayList<SolutionOffer> so;
-  ArrayList<MarketChannelAssignment> channels;
+  ArrayList<MarketChannelAssignment> marketChannelCombs;
   ArrayList<String> characteristics;
   ArrayList<Market> submarkets;
   int size;
@@ -23,5 +23,15 @@ public class Market {
   public Market(String s) {
     characteristics = new ArrayList<String>();
     characteristics.add(s);
+  }
+
+  public MarketChannelAssignment getMarketChannelComb(Channel c) {
+    for (MarketChannelAssignment mca : marketChannelCombs) {
+      if (mca.getChannel().equals(c))
+        return mca;
+    }
+    MarketChannelAssignment newMca = new MarketChannelAssignment(this, c);
+    marketChannelCombs.add(newMca);
+    return newMca;
   }
 }

@@ -35,6 +35,7 @@ public class Business {
     MarketCatalog marketcatalog;
     ChannelCatalog channelcatalog;
     SolutionOfferCatalog solutionoffercatalog;
+
     CustomerDirectory customerdirectory;
     EmployeeDirectory employeedirectory;
     SalesPersonDirectory salespersondirectory;
@@ -45,7 +46,7 @@ public class Business {
         name = n;
         masterorderlist = new MasterOrderList();
         suppliers = new SupplierDirectory(this);
-        // solutionoffercatalog = new SolutionOfferCatalog();
+        solutionoffercatalog = new SolutionOfferCatalog(this);
         persondirectory = new PersonDirectory();
         customerdirectory = new CustomerDirectory(this);
         salespersondirectory = new SalesPersonDirectory(this);
@@ -57,7 +58,6 @@ public class Business {
 
     public int getSalesVolume() {
         return masterorderlist.getSalesVolume();
-
     }
 
     public PersonDirectory getPersonDirectory() {
@@ -76,20 +76,21 @@ public class Business {
         return suppliers;
     }
 
+    public SolutionOfferCatalog getSolutionoffercatalog() {
+        return solutionoffercatalog;
+    }
+
     public ProductsReport getSupplierPerformanceReport(String n) {
         Supplier supplier = suppliers.findSupplier(n);
         if (supplier == null) {
             return null;
         }
         return supplier.prepareProductsReport();
-
     }
 
     public ArrayList<ProductSummary> getSupplierProductsAlwaysAboveTarget(String n) {
-
         ProductsReport productsreport = getSupplierPerformanceReport(n);
         return productsreport.getProductsAlwaysAboveTarget();
-
     }
 
     public int getHowManySupplierProductsAlwaysAboveTarget(String n) {

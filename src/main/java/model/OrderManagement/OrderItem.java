@@ -5,7 +5,7 @@
  */
 package model.OrderManagement;
 
-import model.ProductManagement.Product;
+import model.ProductManagement.SolutionOffer;
 
 /**
  *
@@ -14,13 +14,13 @@ import model.ProductManagement.Product;
 public class OrderItem {
 
     Order order;
-    Product selectedproduct;
+    SolutionOffer selectedBundle;
     int actualPrice;
     int quantity;
 
-    public OrderItem(Product p, int paidprice, int q, Order o) {
-        selectedproduct = p;
-        p.addOrderItem(this); // make sure product links back to the item
+    public OrderItem(SolutionOffer s, int paidprice, int q, Order o) {
+        selectedBundle = s;
+        s.addOrderItem(this); // make sure product links back to the item
         quantity = q;
         this.actualPrice = paidprice;
         order = o;
@@ -33,18 +33,18 @@ public class OrderItem {
     // The following calculates what the price gain would have been if products were
     // sold at target price
     public int getOrderItemTargetTotal() {
-        return selectedproduct.getTargetPrice() * quantity;
+        return selectedBundle.getTargetPrice() * quantity;
     }
 
     // returns positive if seller is making higher margin than target
     // returns negative if seller is making lower margin than target
     // otherwise zero meaning neutral
     public int calculatePricePerformance() {
-        return (actualPrice - selectedproduct.getTargetPrice()) * quantity;
+        return (actualPrice - selectedBundle.getTargetPrice()) * quantity;
     }
 
     public boolean isActualAboveTarget() {
-        if (actualPrice > selectedproduct.getTargetPrice()) {
+        if (actualPrice > selectedBundle.getTargetPrice()) {
             return true;
         } else {
             return false;
@@ -52,7 +52,7 @@ public class OrderItem {
     }
 
     public boolean isActualBelowTarget() {
-        if (actualPrice < selectedproduct.getTargetPrice()) {
+        if (actualPrice < selectedBundle.getTargetPrice()) {
             return true;
         } else {
             return false;
@@ -61,7 +61,7 @@ public class OrderItem {
     }
 
     public boolean isActualATTarget() {
-        if (actualPrice == selectedproduct.getTargetPrice()) {
+        if (actualPrice == selectedBundle.getTargetPrice()) {
             return true;
         } else {
             return false;
@@ -69,8 +69,8 @@ public class OrderItem {
 
     }
 
-    public Product getSelectedProduct() {
-        return selectedproduct;
+    public SolutionOffer getSelectedBundle() {
+        return selectedBundle;
     }
 
     public int getActualPrice() {

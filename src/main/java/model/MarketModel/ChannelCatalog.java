@@ -5,10 +5,22 @@
  */
 package model.MarketModel;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kal bugrara
  */
 public class ChannelCatalog {
+  ArrayList<Channel> channels;
 
+  public ChannelCatalog() {
+    channels = new ArrayList<Channel>();
+  }
+
+  public Channel addChannel() {
+    Channel newChannel = new Channel();
+    channels.add(newChannel);
+    return newChannel;
+  }
 }

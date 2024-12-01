@@ -15,8 +15,9 @@ import model.OrderManagement.MasterOrderList;
 import model.OrderManagement.Order;
 import model.Personnel.Person;
 import model.Personnel.PersonDirectory;
-import model.ProductManagement.Product;
 import model.ProductManagement.ProductCatalog;
+import model.ProductManagement.SolutionOffer;
+import model.ProductManagement.SolutionOfferCatalog;
 import model.Supplier.Supplier;
 import model.Supplier.SupplierDirectory;
 
@@ -40,6 +41,8 @@ public class ConfigureABusiness {
 
     // Add Products +
     loadProducts(business, productCount);
+
+    // Add Bundles -----
 
     // Add Customers
     loadCustomers(business, customerCount);
@@ -134,17 +137,16 @@ public class ConfigureABusiness {
           System.out.println("Cannot generate orders. No supplier in the supplier directory.");
           return;
         }
-        ProductCatalog pc = randomSupplier.getProductCatalog();
-        Product randomProduct = pc.pickRandomProduct();
-        if (randomProduct == null) {
+        SolutionOfferCatalog soc = b.getSolutionoffercatalog();
+        SolutionOffer randomBundle = soc.pickRandomBundle();
+        if (randomBundle == null) {
           System.out.println("Cannot generate orders. No products in the product catalog.");
           return;
         }
 
-        int randomPrice = getRandom(randomProduct.getFloorPrice(), randomProduct.getCeilingPrice());
         int randomQuantity = getRandom(1, productMaxQuantity);
 
-        randomOrder.newOrderItem(randomProduct, randomPrice, randomQuantity);
+        randomOrder.newOrderItem(randomBundle, randomBundle.getTargetPrice(), randomQuantity);
       }
     }
     // Make sure order items are connected to the order
