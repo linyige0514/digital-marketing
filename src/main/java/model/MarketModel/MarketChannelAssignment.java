@@ -47,12 +47,18 @@ public class MarketChannelAssignment {
 
   public int getSalesVolume() {
     int total = 0;
-
     for (SolutionOffer so : bundles) {
       total += so.getSalesVolume();
     }
-
     return total;
+  }
+
+  public int getAdvertisingBudgetShare(SolutionOffer so) {
+    // for each solution offer, its share in budget would be = sales * budget /
+    // total sales
+    if (!bundles.contains(so))
+      return 0;
+    return so.getSalesVolume() * advertisingBudget / this.getSalesVolume();
   }
 
   public String getName() {

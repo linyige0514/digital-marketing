@@ -6,7 +6,9 @@
 package model.ProductManagement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import model.MarketModel.Market;
 import model.OrderManagement.OrderItem;
 
 /**
@@ -18,14 +20,13 @@ public class Product {
     private int floorPrice;
     private int ceilingPrice;
     private int targetPrice;
-    ArrayList<OrderItem> orderItems;
+    ArrayList<SolutionOffer> bundles; // all bundles that contain this product
 
     public Product(int fp, int cp, int tp) {
-
         floorPrice = fp;
         ceilingPrice = cp;
         targetPrice = tp;
-        orderItems = new ArrayList<OrderItem>();
+        bundles = new ArrayList<SolutionOffer>();
     }
 
     public Product(String n, int fp, int cp, int tp) {
@@ -33,7 +34,7 @@ public class Product {
         floorPrice = fp;
         ceilingPrice = cp;
         targetPrice = tp;
-        orderItems = new ArrayList<OrderItem>();
+        bundles = new ArrayList<SolutionOffer>();
     }
 
     public Product updateProduct(int fp, int cp, int tp) {
@@ -47,40 +48,104 @@ public class Product {
         return targetPrice;
     }
 
-    public void addOrderItem(OrderItem oi) {
-        orderItems.add(oi);
+    public void addBundle(SolutionOffer so) {
+        bundles.add(so);
+    }
+
+    public int getSalesQuantity(Market m) {
+        int total = 0;
+        for (SolutionOffer so : bundles) {
+            if (so.getMarket() == m) {
+                total += so.getSalesQuantity();
+            }
+        }
+        return total;
+    }
+
+    public int getSalesVolumeForMarket(Market m) {
+        int total = 0;
+        for (SolutionOffer so : bundles) {
+            if (so.getMarket() == m) {
+                total += so.getSalesShare(this);
+            }
+        }
+        return total;
+    }
+
+    public HashMap<Market, Integer> getAdBudgetList() {
+        HashMap<Market, Integer> resultsByMarket = new HashMap<Market, Integer>();
+        for (SolutionOffer so : bundles) {
+            Market m = so.getMarket();
+            if (resultsByMarket.get(m) != null) {
+                resultsByMarket.replace(m, resultsByMarket.get(m) + so.getAdsBudgetShare(this));
+            } else {
+                resultsByMarket.put(m, so.getAdsBudgetShare(this));
+            }
+        }
+        return resultsByMarket;
+    }
+
+    public int getSalesVolume() {
+        int total = 0;
+        for (SolutionOffer so : bundles) {
+            total += so.getSalesShare(this);
+        }
+        return total;
+    }
+
+    public HashMap<Market, Integer> getSalesQuantityList() {
+        HashMap<Market, Integer> resultsByMarket = new HashMap<Market, Integer>();
+        for (SolutionOffer so : bundles) {
+            Market m = so.getMarket();
+            if (resultsByMarket.get(m) != null) {
+                resultsByMarket.replace(m, resultsByMarket.get(m) + so.getSalesQuantity());
+            } else {
+                resultsByMarket.put(m, so.getSalesQuantity());
+            }
+        }
+        return resultsByMarket;
+    }
+
+    public HashMap<Market, Integer> getSalesVolumeList() {
+        HashMap<Market, Integer> resultsByMarket = new HashMap<Market, Integer>();
+        for (SolutionOffer so : bundles) {
+            Market m = so.getMarket();
+            if (resultsByMarket.get(m) != null) {
+                resultsByMarket.replace(m, resultsByMarket.get(m) + so.getSalesShare(this));
+            } else {
+                resultsByMarket.put(m, so.getSalesShare(this));
+            }
+        }
+
+        return resultsByMarket;
     }
 
     // Number of item sales above target
     public int getNumberOfProductSalesAboveTarget() {
         int sum = 0;
-        for (OrderItem oi : orderItems) {
-            if (oi.isActualAboveTarget() == true)
-                sum = sum + 1;
-        }
+        // for (OrderItem oi : orderItems) {
+        // if (oi.isActualAboveTarget() == true)
+        // sum = sum + 1;
+        // }
         return sum;
     }
 
     public int getNumberOfProductSalesBelowTarget() {
         int sum = 0;
-        for (OrderItem oi : orderItems) {
-            
+        // for (OrderItem oi : orderItems) {
 
-
-
-
-            if (oi.isActualBelowTarget() == true)
-                sum = sum + 1;
-        }
+        // if (oi.isActualBelowTarget() == true)
+        // sum = sum + 1;
+        // }
         return sum;
     }
 
     public boolean isProductAlwaysAboveTarget() {
 
-        for (OrderItem oi : orderItems) {
-            if (oi.isActualAboveTarget() == false)
-                return false; //
-        }
+        // for (OrderItem oi : orderItems) {
+        // if (oi.isActualAboveTarget() == false)
+        // return false; //
+        // }
         return true;
     }
     // calculates the revenues gained or lost (in relation to the target)
@@ -91,25 +156,17 @@ public class Product {
 
     public int getOrderPricePerformance() {
         int sum = 0;
-        for (OrderItem oi : orderItems) {
-            sum = sum + oi.calculatePricePerformance(); // positive and negative values
-        }
-        return sum;
-    }
-
-    public int getSalesVolume() {
-        int sum = 0;
-        for (OrderItem oi : orderItems) {
-            sum = sum + oi.getOrderItemTotal(); // positive and negative values
-        }
+        // for (OrderItem oi : orderItems) {
+        // sum = sum + oi.calculatePricePerformance(); // positive and negative values
+        // }
         return sum;
     }
 
     public int getTotalQuantity() {
         int totalQuantity = 0;
-        for (OrderItem oi : orderItems) {
-            totalQuantity = totalQuantity + oi.getQuantity();
-        }
+        // for (OrderItem oi : orderItems) {
+        // totalQuantity = totalQuantity + oi.getQuantity();
+        // }
         return totalQuantity;
     }
 
