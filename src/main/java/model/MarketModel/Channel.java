@@ -10,5 +10,13 @@ package model.MarketModel;
  * @author kal bugrara
  */
 public class Channel {
+    String name;
 
+    public Channel(String n) {
+        name = n;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

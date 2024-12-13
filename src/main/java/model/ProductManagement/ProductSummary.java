@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package model.ProductManagement;
+import model.OrderManagement.OrderItem;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -62,8 +65,7 @@ public class ProductSummary {
     }
 
     public void printProductSummary() {
-        // System.out.println(subjectproduct.getName() + " | " + acutalsalesvolume + " |
-        // " + numberofsalesabovetarget + " | " + productpriceperformance);
+        System.out.println(subjectProduct.getName() + " | " + salesQuantity + " | " + numberofsalesabovetarget + " | " + productpriceperformance);
     }
 
 }

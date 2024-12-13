@@ -6,6 +6,7 @@
 package model.OrderManagement;
 
 import model.ProductManagement.Product;
+import model.ProductManagement.SolutionOffer;
 
 /**
  *
@@ -15,6 +16,7 @@ public class OrderItem {
 
     Order order;
     Product selectedproduct;
+    SolutionOffer selectedSolutionOffer;
     int actualPrice;
     int quantity;
 
@@ -24,6 +26,19 @@ public class OrderItem {
         quantity = q;
         this.actualPrice = paidprice;
         order = o;
+    }
+
+    public OrderItem(Product p, SolutionOffer sc, int paidprice, int q, Order o) {
+        selectedproduct = p;
+        p.addOrderItem(this); // make sure product links back to the item
+        quantity = q;
+        this.actualPrice = paidprice;
+        selectedSolutionOffer = sc;
+        order = o;
+    }
+
+    public Order getOrder() {
+        return order;
     }
 
     public int getOrderItemTotal() {
@@ -41,6 +56,10 @@ public class OrderItem {
     // otherwise zero meaning neutral
     public int calculatePricePerformance() {
         return (actualPrice - selectedproduct.getTargetPrice()) * quantity;
+    }
+
+    public int calculateRevenue() {
+        return actualPrice * quantity;
     }
 
     public boolean isActualAboveTarget() {
@@ -71,6 +90,10 @@ public class OrderItem {
 
     public Product getSelectedProduct() {
         return selectedproduct;
+    }
+
+    public SolutionOffer getSelectedSolutionOffer() {
+        return selectedSolutionOffer;
     }
 
     public int getActualPrice() {

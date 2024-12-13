@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import model.CustomerManagement.CustomerProfile;
 import model.MarketModel.MarketChannelAssignment;
 import model.ProductManagement.Product;
+import model.ProductManagement.SolutionOffer;
 import model.SalesManagement.SalesPersonProfile;
 
 /**
@@ -43,8 +44,30 @@ public class Order {
         salesperson.addSalesOrder(this);
     }
 
+    public Order(CustomerProfile cp, MarketChannelAssignment mca) {
+        orderItems = new ArrayList<OrderItem>();
+        customer = cp;
+        salesperson = null;
+        customer.addCustomerOrder(this); // we link the order to the customer
+        this.mca = mca;
+    }
+
+    public ArrayList<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public MarketChannelAssignment getMarketChannelAssignment() {
+        return mca;
+    }
+
     public OrderItem newOrderItem(Product p, int actualPrice, int q) {
         OrderItem oi = new OrderItem(p, actualPrice, q, this);
+        orderItems.add(oi);
+        return oi;
+    }
+
+    public OrderItem newOrderItem(Product p, SolutionOffer so, int actualPrice, int q) {
+        OrderItem oi = new OrderItem(p, so, actualPrice, q, this);
         orderItems.add(oi);
         return oi;
     }

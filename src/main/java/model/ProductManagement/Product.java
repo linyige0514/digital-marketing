@@ -140,4 +140,8 @@ public class Product {
         return ceilingPrice;
     }
 
+    public ArrayList<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
 }

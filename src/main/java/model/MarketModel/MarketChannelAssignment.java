@@ -21,4 +21,16 @@ public class MarketChannelAssignment {
 
   }
 
+  public Market getMarket() {
+    return market;
+  }
+
+  public Channel getChannel() {
+    return channel;
+  }
+
+  public String getIdString() {
+    return getMarket().getName() + " " + getChannel().getName();
+  }
+
 }

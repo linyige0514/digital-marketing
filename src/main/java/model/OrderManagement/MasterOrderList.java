@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import model.CustomerManagement.CustomerProfile;
 import model.SalesManagement.SalesPersonProfile;
-
+import model.MarketModel.MarketChannelAssignment;
 /**
  *
  * @author kal bugrara
@@ -27,13 +27,22 @@ public class MasterOrderList {
         Order o = new Order(cp);
         orders.add(o);
         return o;
+    }
 
+    public ArrayList<Order> getOrderList() {
+        return orders;
     }
 
     public Order newOrder(CustomerProfile cp, SalesPersonProfile spp) {
         Order o = new Order(cp, spp);
         orders.add(o);
 
+        return o;
+    }
+
+    public Order newOrder(CustomerProfile cp, MarketChannelAssignment mca) {
+        Order o = new Order(cp, mca);
+        orders.add(o);
         return o;
     }
 

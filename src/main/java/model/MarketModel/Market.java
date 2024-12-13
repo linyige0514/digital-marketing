@@ -7,7 +7,7 @@ package model.MarketModel;
 
 import java.util.ArrayList;
 
-import model.ProductManagement.SolutionOffer;
+ import model.ProductManagement.SolutionOffer;
 
 /**
  *
@@ -23,5 +23,20 @@ public class Market {
   public Market(String s) {
     characteristics = new ArrayList<String>();
     characteristics.add(s);
+    so = new ArrayList<SolutionOffer>();
+    channels = new ArrayList<MarketChannelAssignment>();
   }
+
+  public void addSolutionOffer(SolutionOffer s) {
+    so.add(s);
+  }
+
+  public void addChannel(MarketChannelAssignment mca) {
+    channels.add(mca);
+  }
+
+  public String getName(){
+    return characteristics.get(0);
+  }
+
 }

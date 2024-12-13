@@ -6,6 +6,7 @@
 package model.ProductManagement;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -13,5 +14,24 @@ import java.util.ArrayList;
  */
 public class SolutionOfferCatalog {
     ArrayList<SolutionOffer> solutionoffers;
-    
+
+    public SolutionOfferCatalog() {
+        solutionoffers = new ArrayList<SolutionOffer>();
+    }
+    public ArrayList<SolutionOffer> getSolutionOffers() {
+        return solutionoffers;
+    }
+
+    public void addSolutionOffer(SolutionOffer so) {
+        solutionoffers.add(so);
+    }
+
+    public SolutionOffer pickRandomSolutionOffer() {
+        if (solutionoffers.size() == 0)
+            return null;
+        Random r = new Random();
+        int randomIndex = r.nextInt(solutionoffers.size());
+        return solutionoffers.get(randomIndex);
+    }
+
 }
